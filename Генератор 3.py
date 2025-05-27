@@ -73,7 +73,7 @@ def generate_html(links_data):
 """
     for idx, (url, title, text) in enumerate(links_data, start=1):
         clean_text = text.replace('"', "&quot;")
-        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{title}</a></li>\n'
+        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{i}. {title}</a></li>\n'
 
     html += """  </ul>
 </body>
@@ -94,8 +94,7 @@ def main():
     for i, link in enumerate(links, 1):
         print(f"[{i}/{len(links)}] Обработка: {link}")
         title, text = fetch_title_and_text(link)
-        links_data.append((link, title, text))
-        time.sleep(0.5)
+        links_data.append((link, title, text, i))
 
     html = generate_html(links_data)
 
