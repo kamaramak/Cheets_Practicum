@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import time
 
 INPUT_FILE = "links 3.txt"
 OUTPUT_FILE = "3. Бэкенд на Django.html"
@@ -71,9 +70,9 @@ def generate_html(links_data):
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """
-    for idx, (url, title, text) in enumerate(links_data, start=1):
+    for idx, (url, title, text, i) in enumerate(links_data, start=1):
         clean_text = text.replace('"', "&quot;")
-        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{i}. {title}</a></li>\n'
+        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{title}</a></li>\n'
 
     html += """  </ul>
 </body>
