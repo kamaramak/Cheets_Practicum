@@ -70,7 +70,7 @@ def generate_html(links_data):
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """
-    for idx, (url, title, text, i) in enumerate(links_data, start=1):
+    for idx, (url, title, text) in enumerate(links_data, start=1):
         clean_text = text.replace('"', "&quot;")
         html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{title}</a></li>\n'
 
@@ -93,7 +93,7 @@ def main():
     for i, link in enumerate(links, 1):
         print(f"[{i}/{len(links)}] Обработка: {link}")
         title, text = fetch_title_and_text(link)
-        links_data.append((link, title, text, i))
+        links_data.append((link, title, text))
 
     html = generate_html(links_data)
 
