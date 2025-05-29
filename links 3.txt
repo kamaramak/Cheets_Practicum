@@ -11,3 +11,4 @@ https://code.s3.yandex.net/Python-dev/cheatsheets/031-django-orm-vyborochnoe-pol
 https://code.s3.yandex.net/Python-dev/cheatsheets/032-django-formy-shpora/032-django-formy-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/034-django-paginator-shpora/034-django-paginator-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/033-django-class-based-views-shpora/033-django-class-based-views-shpora.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/035-django-polzovateli-shpora/035-django-polzovateli-shpora.html
