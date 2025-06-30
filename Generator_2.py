@@ -2,8 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-INPUT_FILE = "links 1.txt"
-OUTPUT_FILE = "1. Основы_Углубленный Python.html"
+INPUT_FILE = "links 2.txt"
+OUTPUT_FILE = "2. Алгоритмы и структуры данных.html"
+NAME = 'Алгоритмы и структуры данных'
 
 
 def fetch_title_and_text(url):
@@ -67,7 +68,7 @@ def generate_html(links_data):
 </head>
 <body>
   <h1>🧠 Мои шпаргалки</h1>
-  <h1>Основы_Углубленный Python</h1>
+  <h1>""" + NAME + """</h1>
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """

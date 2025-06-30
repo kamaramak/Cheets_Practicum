@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-import time
 
-INPUT_FILE = "links 2.txt"
-OUTPUT_FILE = "2. Алгоритмы и структуры данных.html"
+INPUT_FILE = "links 3.txt"
+OUTPUT_FILE = "3. Бэкенд на Django.html"
+NAME = 'Бэкенд на Django'
 
 
 def fetch_title_and_text(url):
@@ -67,7 +67,7 @@ def generate_html(links_data):
 </head>
 <body>
   <h1>🧠 Мои шпаргалки</h1>
-  <h1>Алгоритмы и структуры данных</h1>
+  <h1>""" + NAME + """</h1>
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """
@@ -95,7 +95,6 @@ def main():
         print(f"[{i}/{len(links)}] Обработка: {link}")
         title, text = fetch_title_and_text(link)
         links_data.append((link, title, text))
-        time.sleep(0.5)
 
     html = generate_html(links_data)
 
