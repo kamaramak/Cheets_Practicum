@@ -1,3 +1,4 @@
 https://code.s3.yandex.net/Python-dev/cheatsheets/039-api-rest-i-formaty-obmena-dannymi-shpora/039-api-rest-i-formaty-obmena-dannymi-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/040-api-telegram-boty-shpora/040-api-telegram-boty-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/041-python-oshibki-logi-env-shpora/041-python-oshibki-logi-env-shpora.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/043-drf-serializatsija-viewset-routery-shpora/043-drf-serializatsija-viewset-routery-shpora.html
