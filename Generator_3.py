@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-INPUT_FILE = "links 3.txt"
+INPUT_FILE = "links_3.txt"
 OUTPUT_FILE = "3. Бэкенд на Django.html"
 NAME = 'Бэкенд на Django'
 

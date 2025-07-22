@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-INPUT_FILE = "links 4.txt"
+INPUT_FILE = "links_4.txt"
 OUTPUT_FILE = "4. API - интерфейс взаимодействия программ.html"
 NAME = 'API - интерфейс взаимодействия программ'
 

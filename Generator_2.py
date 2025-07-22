@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-INPUT_FILE = "links 2.txt"
+INPUT_FILE = "links_2.txt"
 OUTPUT_FILE = "2. Алгоритмы и структуры данных.html"
 NAME = 'Алгоритмы и структуры данных'
 
