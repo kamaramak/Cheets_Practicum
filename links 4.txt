@@ -3,3 +3,4 @@ https://code.s3.yandex.net/Python-dev/cheatsheets/040-api-telegram-boty-shpora/0
 https://code.s3.yandex.net/Python-dev/cheatsheets/041-python-oshibki-logi-env-shpora/041-python-oshibki-logi-env-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/043-drf-serializatsija-viewset-routery-shpora/043-drf-serializatsija-viewset-routery-shpora.html
 https://code.s3.yandex.net/backend-developer/learning-materials/__related-__.pdf
+https://code.s3.yandex.net/Python-dev/cheatsheets/044-drf-serializatory-i-validatory-dlja-svjazannyh-model/044-drf-serializatory-i-validatory-dlja-svjazannyh-model.html
