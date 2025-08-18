@@ -6,3 +6,4 @@ https://code.s3.yandex.net/backend-developer/learning-materials/__related-__.pdf
 https://code.s3.yandex.net/Python-dev/cheatsheets/044-drf-serializatory-i-validatory-dlja-svjazannyh-model/044-drf-serializatory-i-validatory-dlja-svjazannyh-model.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/045-reguljarnye-vyrazhenija-shpora/045-reguljarnye-vyrazhenija-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/046-drf-prava-limity-paginatsija-filtratsija-poisk-/046-drf-prava-limity-paginatsija-filtratsija-poisk-.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/047-git-i-github-shpora/047-git-i-github-shpora.html
