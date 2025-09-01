@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
-INPUT_FILE = "links_3.txt"
-OUTPUT_FILE = "3. Бэкенд на Django.html"
-NAME = 'Бэкенд на Django'
+INPUT_FILE = "links_5.txt"
+OUTPUT_FILE = "5. Управление проектом на удалённом сервере.html"
+NAME = 'Управление проектом на удалённом сервере'
 
 
 def fetch_pdf_title(url):

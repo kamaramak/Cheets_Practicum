@@ -1,0 +1,3 @@
+https://code.s3.yandex.net/backend-developer/learning-materials/Команды%20в%20терминале.pdf
+https://code.s3.yandex.net/backend-developer/learning-materials/Шпаргалка%20по%20Git.pdf
+https://code.s3.yandex.net/backend-developer/learning-materials/Шпаргалка%20по%20Django.pdf

@@ -7,7 +7,39 @@ OUTPUT_FILE = "2. Алгоритмы и структуры данных.html"
 NAME = 'Алгоритмы и структуры данных'
 
 
-def fetch_title_and_text(url):
+def fetch_pdf_title(url):
+    """Получаем заголовок PDF файла из URL или метаданных"""
+    try:
+        # Пробуем получить заголовок из заголовков HTTP
+        headers = {"User-Agent": "Mozilla/5.0"}
+        response = requests.head(url, headers=headers,
+                                 timeout=10, allow_redirects=True)
+
+        # Пытаемся извлечь название из заголовка Content-Disposition
+        content_disposition = response.headers.get('Content-Disposition', '')
+        if 'filename=' in content_disposition:
+            filename = re.findall(
+                r'filename=["\']?(.*?)["\']?$', content_disposition)
+            if filename:
+                # Убираем расширение .pdf и декодируем URL-encoded символы
+                title = filename[0].replace('.pdf', '').replace('%20', ' ')
+                return title
+
+        # Если не нашли в заголовках, берем из URL
+        # Декодируем URL и убираем расширение
+        title = url.split('/')[-1].replace('.pdf', '')
+        title = requests.utils.unquote(title)  # Декодируем URL-encoded символы
+        title = title.replace('%20', ' ')  # Заменяем %20 на пробелы
+
+        return title
+
+    except Exception as e:
+        print(f"[!] Не удалось обработать PDF {url}: {e}")
+        return url.split('/')[-1].replace('.pdf', '')
+
+
+def fetch_html_title_and_text(url):
+    """Получаем заголовок и текст HTML страницы"""
     try:
         headers = {"User-Agent": "Mozilla/5.0"}
         r = requests.get(url, headers=headers, timeout=10)
@@ -29,6 +61,18 @@ def fetch_title_and_text(url):
         return url, ""
 
 
+def fetch_title_and_text(url):
+    """Определяем тип контента и обрабатываем соответствующим образом"""
+    # Проверяем, является ли ссылка PDF
+    if url.lower().endswith('.pdf') or 'pdf' in requests.head(url).headers.get('Content-Type', ''):
+        print(f"📄 Обнаружен PDF: {url}")
+        title = fetch_pdf_title(url)
+        return title, f"PDF документ: {title}"
+    else:
+        # Обычная HTML страница
+        return fetch_html_title_and_text(url)
+
+
 def generate_html(links_data):
     html = """
 <!DOCTYPE html>
@@ -44,6 +88,8 @@ def generate_html(links_data):
     li { margin: 15px 0; }
     a { text-decoration: none; color: #3366cc; font-weight: bold; }
     a:hover { text-decoration: underline; }
+    .pdf-link { color: #d93025; }
+    .pdf-link:before { content: "📄 "; }
   </style>
   <script>
     function filterLinks() {
@@ -72,9 +118,10 @@ def generate_html(links_data):
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """
-    for idx, (url, title, text) in enumerate(links_data, start=1):
+    for idx, (url, title, text, is_pdf) in enumerate(links_data, start=1):
         clean_text = text.replace('"', "&quot;")
-        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank">{title}</a></li>\n'
+        link_class = 'pdf-link' if is_pdf else ''
+        html += f'    <li data-text="{clean_text}"><strong>{idx}.</strong> <a href="{url}" target="_blank" class="{link_class}">{title}</a></li>\n'
 
     html += """  </ul>
 </body>
@@ -94,9 +141,17 @@ def main():
     links_data = []
     for i, link in enumerate(links, 1):
         print(f"[{i}/{len(links)}] Обработка: {link}")
-        title, text = fetch_title_and_text(link)
-        links_data.append((link, title, text))
-        time.sleep(0.5)
+
+        # Определяем тип ссылки
+        is_pdf = link.lower().endswith('.pdf')
+
+        if is_pdf:
+            title = fetch_pdf_title(link)
+            text = f"PDF документ: {title}"
+        else:
+            title, text = fetch_html_title_and_text(link)
+
+        links_data.append((link, title, text, is_pdf))
 
     html = generate_html(links_data)
 
