@@ -3,3 +3,4 @@ https://code.s3.yandex.net/backend-developer/learning-materials/Шпаргалк
 https://code.s3.yandex.net/backend-developer/learning-materials/Шпаргалка%20по%20Django.pdf
 https://code.s3.yandex.net/backend-developer/learning-materials/Настройка%20SSH%20для%20GitHub.pdf
 https://code.s3.yandex.net/Python-dev/cheatsheets/049-upravlenie-proektom-na-udalennom-servere-1-sprin/049-upravlenie-proektom-na-udalennom-servere-1-sprin.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/050-upravlenie-proektom-na-udalennom-servere-2-sprin/050-upravlenie-proektom-na-udalennom-servere-2-sprin.html
