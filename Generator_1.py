@@ -1,6 +1,6 @@
+import re
 import requests
 from bs4 import BeautifulSoup
-import time
 
 INPUT_FILE = "links_1.txt"
 OUTPUT_FILE = "1. Основы и Углубленный Python.html"
@@ -61,18 +61,6 @@ def fetch_html_title_and_text(url):
         return url, ""
 
 
-def fetch_title_and_text(url):
-    """Определяем тип контента и обрабатываем соответствующим образом"""
-    # Проверяем, является ли ссылка PDF
-    if url.lower().endswith('.pdf') or 'pdf' in requests.head(url).headers.get('Content-Type', ''):
-        print(f"📄 Обнаружен PDF: {url}")
-        title = fetch_pdf_title(url)
-        return title, f"PDF документ: {title}"
-    else:
-        # Обычная HTML страница
-        return fetch_html_title_and_text(url)
-
-
 def generate_html(links_data):
     html = """
 <!DOCTYPE html>
@@ -113,7 +101,7 @@ def generate_html(links_data):
   </script>
 </head>
 <body>
-  <h1>🧠 Мои шпаргалки</h1>
+  <h1>🧠 Шпаргалки для Python-разработчика</h1>
   <h1>""" + NAME + """</h1>
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
