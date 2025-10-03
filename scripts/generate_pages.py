@@ -1,9 +1,7 @@
+import os
+import re
 import requests
 from bs4 import BeautifulSoup
-
-INPUT_FILE = "links_3.txt"
-OUTPUT_FILE = "3. Бэкенд на Django.html"
-NAME = 'Бэкенд на Django'
 
 
 def fetch_pdf_title(url):
@@ -60,19 +58,7 @@ def fetch_html_title_and_text(url):
         return url, ""
 
 
-def fetch_title_and_text(url):
-    """Определяем тип контента и обрабатываем соответствующим образом"""
-    # Проверяем, является ли ссылка PDF
-    if url.lower().endswith('.pdf') or 'pdf' in requests.head(url).headers.get('Content-Type', ''):
-        print(f"📄 Обнаружен PDF: {url}")
-        title = fetch_pdf_title(url)
-        return title, f"PDF документ: {title}"
-    else:
-        # Обычная HTML страница
-        return fetch_html_title_and_text(url)
-
-
-def generate_html(links_data):
+def generate_html(links_data, block_title):
     html = """
 <!DOCTYPE html>
 <html lang="ru">
@@ -112,8 +98,8 @@ def generate_html(links_data):
   </script>
 </head>
 <body>
-  <h1>🧠 Мои шпаргалки</h1>
-  <h1>""" + NAME + """</h1>
+  <h1>🧠 Шпаргалки для Python-разработчика</h1>
+  <h1>""" + block_title + """</h1>
   <input type="text" id="searchBox" onkeyup="filterLinks()" placeholder="🔍 Поиск по содержимому страницы...">
   <ul id="linkList">
 """
@@ -129,36 +115,96 @@ def generate_html(links_data):
     return html
 
 
-def main():
-    links = []
-    with open(INPUT_FILE, "r", encoding="utf-8") as f:
-        for line in f:
-            url = line.strip()
-            if url:
-                links.append(url)
+def generate_index():
+    with open("data/blocks.txt", encoding="utf-8") as f:
+        blocks = [line.strip() for line in f if line.strip()]
 
-    links_data = []
-    for i, link in enumerate(links, 1):
-        print(f"[{i}/{len(links)}] Обработка: {link}")
+    os.makedirs("docs/blocks", exist_ok=True)
 
-        # Определяем тип ссылки
-        is_pdf = link.lower().endswith('.pdf')
+    # Считаем, сколько реально есть файлов со ссылками
+    link_files = sorted([f for f in os.listdir("data/links") if f.endswith(".txt")])
+    n = len(link_files)
 
-        if is_pdf:
-            title = fetch_pdf_title(link)
-            text = f"PDF документ: {title}"
-        else:
-            title, text = fetch_html_title_and_text(link)
+    index_links = []
+    block_titles = []
+    for i in range(1, n + 1):
+        block_title = f"Блок {i}: {blocks[i-1]}"
+        block_titles.append(block_title)
 
-        links_data.append((link, title, text, is_pdf))
+        with open(f"data/links/{i}.txt", encoding="utf-8") as f:
+            links = [line.strip() for line in f if line.strip()]
 
-    html = generate_html(links_data)
+        links_data = []
+        for j, link in enumerate(links, 1):
+            print(f"Блок {i}: [{j}/{len(links)}] Обработка: {link}")
+            is_pdf = link.lower().endswith('.pdf')
+            if is_pdf:
+                title = fetch_pdf_title(link)
+                text = f"PDF документ: {title}"
+            else:
+                title, text = fetch_html_title_and_text(link)
+            links_data.append((link, title, text, is_pdf))
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        f.write(html)
+        html = generate_html(links_data, block_title)
+        with open(f"docs/blocks/block{i}.html", "w", encoding="utf-8") as f:
+            f.write(html)
 
-    print(f"✅ Готово! Открывай файл: {OUTPUT_FILE}")
+        index_links.append(f'<li><a href="blocks/block{i}.html">{block_title}</a></li>')
+
+    # Главная страница
+    index_html = """
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мои шпаргалки</title>
+  <style>
+    body { font-family: sans-serif; background: #f9f9f9; padding: 40px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; }
+    #searchBox { width: 100%; padding: 10px; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 15px 0; }
+    a { text-decoration: none; color: #3366cc; font-weight: bold; }
+    a:hover { text-decoration: underline; }
+    .pdf-link { color: #d93025; }
+    .pdf-link:before { content: "📄 "; }
+  </style>
+  <script>
+    function filterLinks() {
+      var input = document.getElementById("searchBox");
+      var filter = input.value.toLowerCase();
+      var ul = document.getElementById("linkList");
+      var li = ul.getElementsByTagName("li");
+
+      for (var i = 0; i < li.length; i++) {
+        var a = li[i].getElementsByTagName("a")[0];
+        var data = li[i].getAttribute("data-text").toLowerCase();
+        var title = a.textContent.toLowerCase();
+
+        if (title.includes(filter) || data.includes(filter)) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>🧠 Шпаргалки для Python-разработчика</h1>
+  <ul id="linkList">
+"""
+    index_html += ''.join(index_links)
+    index_html += """  </ul>
+</body>
+</html>
+"""
+
+    with open("docs/index.html", "w", encoding="utf-8") as f:
+        f.write(index_html)
+
+    return n, block_titles
 
 
 if __name__ == "__main__":
-    main()
+    generate_index()
