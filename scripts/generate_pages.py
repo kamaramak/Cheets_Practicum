@@ -158,6 +158,7 @@ def generate_index():
 <head>
   <meta charset="UTF-8">
   <title>Мои шпаргалки</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     body { font-family: sans-serif; background: #f9f9f9; padding: 40px; max-width: 800px; margin: auto; }
     h1 { text-align: center; }
