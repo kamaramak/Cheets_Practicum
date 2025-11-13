@@ -1,0 +1,1 @@
+https://code.s3.yandex.net/Python-dev/cheatsheets/059-python-konkurentnost-parallelnost-asinhronnos/059-python-konkurentnost-parallelnost-asinhronnos.html
