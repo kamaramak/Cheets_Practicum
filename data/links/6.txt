@@ -4,3 +4,4 @@ https://wtforms.readthedocs.io/en/3.0.x/
 https://wtforms.readthedocs.io/en/3.0.x/fields/#basic-fields
 https://wtforms.readthedocs.io/en/3.0.x/validators/#built-in-validators
 https://getbootstrap.com/docs/5.3/forms/overview/
+https://code.s3.yandex.net/Python-dev/cheatsheets/062-flask-shpora/062-flask-shpora.html
