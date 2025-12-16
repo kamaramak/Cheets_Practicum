@@ -1,2 +1,3 @@
 https://code.s3.yandex.net/Python-dev/cheatsheets/054-parsing-printsipy-poiska-tegov-shpora/054-parsing-printsipy-poiska-tegov-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/055-parsing-osnovnye-biblioteki-shpora/055-parsing-osnovnye-biblioteki-shpora.html
+https://code.s3.yandex.net/backend-developer/learning-materials/delugov/bs4.pdf
