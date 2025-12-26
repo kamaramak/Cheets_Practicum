@@ -4,3 +4,4 @@ https://code.s3.yandex.net/backend-developer/learning-materials/delugov/bs4.pdf
 https://code.s3.yandex.net/Python-dev/cheatsheets/045-reguljarnye-vyrazhenija-shpora/045-reguljarnye-vyrazhenija-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/057-parsing-modul-argparse-shpora/057-parsing-modul-argparse-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/060-sqlalchemy-shpora/060-sqlalchemy-shpora.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/061-parsing-requests-html-scrapy-shpora/061-parsing-requests-html-scrapy-shpora.html
