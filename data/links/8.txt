@@ -1,1 +1,1 @@
-
+https://code.s3.yandex.net/Python-dev/cheatsheets/063-fastapi-osnovy-shpora/063-fastapi-osnovy-shpora.html
