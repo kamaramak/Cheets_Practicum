@@ -1,2 +1,3 @@
 https://code.s3.yandex.net/Python-dev/cheatsheets/063-fastapi-osnovy-shpora/063-fastapi-osnovy-shpora.html
 https://code.s3.yandex.net/Python-dev/cheatsheets/065-fastapi-bazy-dannyh-i-migratsii-shpora/065-fastapi-bazy-dannyh-i-migratsii-shpora.html
+https://code.s3.yandex.net/Python-dev/cheatsheets/066-fastapi-routery-i-crud-operatsii-shpora/066-fastapi-routery-i-crud-operatsii-shpora.html
